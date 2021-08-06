@@ -80,20 +80,37 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                <table border = 1>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Vessel Name</th>
+                            <th>IMO</th>
+                            <th>MMSI</th>
+                            <th>Call Sign</th>
+                            <th>Longtitude</th>
+                            <th>Latitude</th>
+                            <th>Time Received</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($crawledVessels as $crawledVessel)                         
+                            <tr>
+                                <td>{{$crawledVessel->id}}</td>
+                                <td>{{$crawledVessel->vessel_name}}</td>
+                                <td>{{$crawledVessel->imo}}</td>
+                                <td>{{$crawledVessel->mmsi}}</td>
+                                <td>{{$crawledVessel->call_sign}}</td>
+                                <td>{{$crawledVessel->longtitude}}</td>
+                                <td>{{$crawledVessel->latitude}}</td>
+                                <td>{{$crawledVessel->time_received}}</td>
+                            </tr>
+                        @endforeach                                              
+                    </tbody>
+                </table>
+                <div>
+                    {{ $crawledVessels->links() }}
+                </div>                    
             </div>
         </div>
     </body>

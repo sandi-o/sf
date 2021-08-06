@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Http;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,16 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/vessels', function () {
-    // $response = Http::withoutVerifying()->withToken(env('AIS_TOKEN'))->get('https://ais.spire.com/vessels?last_known_position');
-
-    // $geoBucket = array();
-    // foreach($response->json()['data'] as $key => $value) {
-    //     $coordinates = $value['last_known_position']['geometry']['coordinates'];
-
-    //     $geoBucket[] = 'LNG: '.$coordinates[0].',  LON: '.$coordinates[1];
-    // }
-
-    // Storage::disk('public')->put( time() .'.json', json_encode($geoBucket));
-
-});
+// Route::get('/vessels', 'Controller@bucketize');
+Route::get('/vessels/latest', 'CrawledVesselController@latestPosition');
+Route::get('/vessels/history', 'Controller@historyPosition');
